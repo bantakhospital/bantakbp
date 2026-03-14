@@ -1091,7 +1091,8 @@ function getAdminPass() {
   return localStorage.getItem(LS.ADMIN_PASS) || ADMIN_PASS_DEFAULT;
 }
 
-let API = localStorage.getItem(LS.URL) || '';
+const _DEFAULT_API = 'https://script.google.com/macros/s/AKfycbxi2NVJdobySr-RJQIo9_jf6GO9DIgpqf5bKqTEYe6_FcRGQTKEGnbwpcuba436MmLb/exec';
+let API = localStorage.getItem(LS.URL) || _DEFAULT_API;
 let CU  = null;   // current user
 let CR  = null;   // current role
 let selPt = null; // staff selected patient
@@ -2609,7 +2610,10 @@ if(pdpaOv) pdpaOv.addEventListener('click', function(e){ if(e.target===this) clo
 // ── INIT ──────────────────────────────────────────────────────────
 window.addEventListener('load',()=>{
   // restore URL (ไม่ต้องแสดงในช่อง — จะโหลดหลัง unlock)
-  const savedURL = localStorage.getItem(LS.URL) || '';
+  const savedURL = localStorage.getItem(LS.URL) || _DEFAULT_API;
+  if (!localStorage.getItem(LS.URL)) {
+    localStorage.setItem(LS.URL, _DEFAULT_API);
+  }
   API = savedURL;
 
   // init setup page live validation (ทำไว้ล่วงหน้า)

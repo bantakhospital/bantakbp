@@ -1,2 +1,0 @@
-# bantakbp
-Bantak BP Connect
